@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>message消息池解析 | bosh&#39;s blog</title>
+    <meta name="author" content="bosh">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="Message源码位置：framework/base/core/java/android/os/  消息队列  Message中用静态链表方式维护一个消息队列  private static Message sPool;  在没有使用的时候，sPool为空。可以通过Message.obtain()来获取消息池  中的Message。  12345678910111213public static Message obtain() &amp;#123;        synchronized...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="bosh&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">bosh&#39;s blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/android">
+                <span class="nav-text">android</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://chinabosh.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#消息队列"><span class="toc-number">1.</span> <span class="toc-text">消息队列</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            message消息池解析
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://chinabosh.github.io/2019/12/31/message消息池解析/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-31T02:40:57.000Z" itemprop="datePublished">2019-12-31</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>Message源码位置：framework/base/core/java/android/os/  </p>
+<a id="more"></a>
+
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><p>  Message中用静态链表方式维护一个消息队列<br>  <code>private static Message sPool;</code><br>  在没有使用的时候，sPool为空。可以通过Message.obtain()来获取消息池<br>  中的Message。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static Message obtain() &#123;</span><br><span class="line">        synchronized (sPoolSync) &#123;</span><br><span class="line">            if (sPool != null) &#123;</span><br><span class="line">                Message m = sPool;</span><br><span class="line">                sPool = m.next;</span><br><span class="line">                m.next = null;</span><br><span class="line">                m.flags = 0; // clear in-use flag</span><br><span class="line">                sPoolSize--;</span><br><span class="line">                return m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return new Message();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>  可以看到，如果队列空了，就new一个新的Message返回，否则就取链表头部<br>  数据返回。<br>  那么一开始链表的数据哪里来呢？<br>  答案是Message用完recycle后添加到队列中  </p>
+<p>  再来看看recycle:  </p>
+<pre><code>public void recycle() {
+        if (isInUse()) {
+            if (gCheckRecycle) {
+                throw new IllegalStateException(&quot;This message cannot be recycled because it &quot;
+                        + &quot;is still in use.&quot;);
+            }
+            return;
+        }
+        recycleUnchecked();
+    }
+
+    void recycleUnchecked() {
+            // Mark the message as in use while it remains in the recycled object pool.
+            // Clear out all other details.
+            flags = FLAG_IN_USE;
+            what = 0;
+            arg1 = 0;
+            arg2 = 0;
+            obj = null;
+            replyTo = null;
+            sendingUid = -1;
+            when = 0;
+            target = null;
+            callback = null;
+            data = null;
+
+            synchronized (sPoolSync) {
+                if (sPoolSize &lt; MAX_POOL_SIZE) {
+                    next = sPool;
+                    sPool = this;
+                    sPoolSize++;
+                }
+            }
+        }</code></pre><p>  recycle方法主要判断一下message是不是还在使用，如果还在使用就抛出异常<br>  ，否则调用recycleUnchecked将变量置空，并且当链表中的message数量没达<br>  到最大值时将message插入链表头部。  </p>
+<p>更多文章，尽在<a href="https://chinabosh.github.io">个人博客</a><br><a href="https://github.com/chinabosh" target="_blank" rel="noopener">fork me on github</a></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "c24aaa41e31ef5fc2981",
+        clientSecret: "46e610d10a241b1fba505fb58d2ab770b9a792a5",
+        repo: "chinabosh.github.io",
+        owner: "chinabosh",
+        admin: ["chinabosh"],
+        id: "2019/12/31/message消息池解析",
+        distractionFreeMode: true,
+        title: "message消息池解析",
+        body: "https://chinabosh.github.io/2019/12/31/message消息池解析/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_pv">
+	本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
