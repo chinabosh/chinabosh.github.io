@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+
+    
+
+    
+
+    <title>android常用混淆规则 | bosh&#39;s blog</title>
+    <meta name="author" content="bosh">
+    <meta name="version" content="1.0.0">
+    <meta name="keywords" content>
+    <meta name="description" content="Android常用混淆规则1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021031041051061071081091101111121131...">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    
+    <link rel="alternate" href="/atom.xml" title="bosh&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">bosh&#39;s blog</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/android">
+                <span class="nav-text">android</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://chinabosh.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Android常用混淆规则"><span class="toc-number">1.</span> <span class="toc-text">Android常用混淆规则</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            android常用混淆规则
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://chinabosh.github.io/2020/01/16/android常用混淆规则/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2020-01-16T02:34:27.000Z" itemprop="datePublished">2020-01-16</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="Android常用混淆规则"><a href="#Android常用混淆规则" class="headerlink" title="Android常用混淆规则"></a>Android常用混淆规则</h3><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line">#关闭预校验</span><br><span class="line">-dontpreverify</span><br><span class="line"></span><br><span class="line">#保留注解</span><br><span class="line">-keepattributes *Annotation*</span><br><span class="line"></span><br><span class="line"># 处理support包</span><br><span class="line">-dontnote android.support.**</span><br><span class="line">-dontwarn android.support.**</span><br><span class="line"># 保留继承的</span><br><span class="line">-keep public class * extends android.support.v4.**</span><br><span class="line">-keep public class * extends android.support.v7.**</span><br><span class="line">-keep public class * extends android.support.annotation.**</span><br><span class="line"></span><br><span class="line">#保留所有拥有本地方法的类名及本地方法名</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    native &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#保留自定义View的get和set方法</span><br><span class="line">-keepclassmembers public class * extends android.view.View &#123;</span><br><span class="line">   void set*(***);</span><br><span class="line">   *** get*();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#保留Activity中View及其子类入参的方法，如: onClick(android.view.View)</span><br><span class="line">-keepclassmembers class * extends android.app.Activity &#123;</span><br><span class="line">   public void *(android.view.View);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#保留枚举</span><br><span class="line">-keepclassmembers enum * &#123;</span><br><span class="line">    **[] $VALUES;</span><br><span class="line">    public *;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#保留序列化的类</span><br><span class="line">-keepclassmembers class * implements android.os.Parcelable &#123;</span><br><span class="line">  public static final android.os.Parcelable$Creator CREATOR;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#保留R文件的静态成员</span><br><span class="line">-keepclassmembers class **.R$* &#123;</span><br><span class="line">    public static &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-dontwarn android.support.**</span><br><span class="line"></span><br><span class="line">-keep class android.support.annotation.Keep</span><br><span class="line"></span><br><span class="line">-keep @android.support.annotation.Keep class * &#123;*;&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembers class * &#123;</span><br><span class="line">    @android.support.annotation.Keep &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembers class * &#123;</span><br><span class="line">    @android.support.annotation.Keep &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembers class * &#123;</span><br><span class="line">    @android.support.annotation.Keep &lt;init&gt;(...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#webView需要进行特殊处理</span><br><span class="line">-keepclassmembers class fqcn.of.javascript.interface.for.Webview &#123;</span><br><span class="line">   public *;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class * extends android.webkit.WebViewClient &#123;</span><br><span class="line">    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);</span><br><span class="line">    public boolean *(android.webkit.WebView, java.lang.String);</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class * extends android.webkit.WebViewClient &#123;</span><br><span class="line">    public void *(android.webkit.WebView, jav.lang.String);</span><br><span class="line">&#125;</span><br><span class="line">#在app中与HTML5的JavaScript的交互进行特殊处理</span><br><span class="line">#我们需要确保这些js要调用的原生方法不能够被混淆，于是我们需要做如下处理：</span><br><span class="line">-keepclassmembers class com.ljd.example.JSInterface &#123;</span><br><span class="line">    &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class * &#123;</span><br><span class="line">    @android.webkit.JavascriptInterface &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepattributes *JavascriptInterface*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#entity xxx表示包名</span><br><span class="line">-keep class com.xxx.xxx.entity.** &#123; *; &#125;</span><br><span class="line"></span><br><span class="line">#一些要保留的，比如对外接口</span><br><span class="line">-keep class com.xxx.xxx.listener.** &#123;*;&#125;</span><br><span class="line">-keep class com.xxx.xxx.retrofit.WebFailAction&#123;*;&#125;</span><br><span class="line">-keep class com.xxx.xxx.retrofit.WebSuccessAction&#123;*;&#125;</span><br><span class="line">-keep class com.xxx.xxx.retrofit.WebSuccessActionOcr&#123;*;&#125;</span><br><span class="line">-keep class com.xxx.xxx.retrofit.ResponseData&#123;*;&#125;</span><br><span class="line"></span><br><span class="line">#libs jar</span><br><span class="line"></span><br><span class="line">-keep class me.jessyan.autosize.** &#123; *; &#125;</span><br><span class="line">-keep interface me.jessyan.autosize.** &#123; *; &#125;</span><br><span class="line">-keep class com.yxz.idcard.**</span><br><span class="line"></span><br><span class="line">##第三方库 一般文档中都会写出混淆规则</span><br><span class="line"></span><br><span class="line">#butterknife</span><br><span class="line">-keep class butterknife.** &#123; *; &#125;</span><br><span class="line">-dontwarn butterknife.internal.**</span><br><span class="line">-keep class **$$ViewBinder &#123; *; &#125;</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    @butterknife.* &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    @butterknife.* &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Gson uses generic type information stored in a class file when working with fields. Proguard</span><br><span class="line"># removes such information by default, so configure it to keep all of it.</span><br><span class="line">-keepattributes Signature</span><br><span class="line"></span><br><span class="line"># For using GSON @Expose annotation</span><br><span class="line">-keepattributes *Annotation*</span><br><span class="line"></span><br><span class="line"># Gson specific classes</span><br><span class="line">-keep class com.google.gson.** &#123;*;&#125;</span><br><span class="line">-keep class com.google.**&#123;*;&#125;</span><br><span class="line">-keep class sun.misc.Unsafe &#123; *; &#125;</span><br><span class="line">-keep class com.google.gson.stream.** &#123; *; &#125;</span><br><span class="line">-keep class com.google.gson.examples.android.model.** &#123; *; &#125;</span><br><span class="line"></span><br><span class="line">#Glide</span><br><span class="line">-keep class com.bumptech.glide.**&#123;*;&#125;</span><br><span class="line">-keep public class * implements com.bumptech.glide.module.AppGlideModule</span><br><span class="line">-keep public class * implements com.bumptech.glide.module.LibraryGlideModule</span><br><span class="line">-keep public enum com.bumptech.glide.load.ImageHeaderParser$** &#123;</span><br><span class="line">  **[] $VALUES;</span><br><span class="line">  public *;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#eventbus</span><br><span class="line">-keepattributes *Annotation*</span><br><span class="line">-keepclassmembers class ** &#123;</span><br><span class="line">    @org.greenrobot.eventbus.Subscribe &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keep enum org.greenrobot.eventbus.ThreadMode &#123; *; &#125;</span><br><span class="line"></span><br><span class="line"># Only required if you use AsyncExecutor</span><br><span class="line">-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent &#123;</span><br><span class="line">    &lt;init&gt;(java.lang.Throwable);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#metisse</span><br><span class="line">-dontwarn com.squareup.picasso.**</span><br><span class="line"></span><br><span class="line">-dontwarn com.squareup.okhttp3.**</span><br><span class="line">-keep class com.squareup.okhttp3.** &#123; *;&#125;</span><br><span class="line">-dontwarn okio.**</span><br><span class="line"></span><br><span class="line">-dontwarn retrofit2.**</span><br><span class="line"></span><br><span class="line">-keep class retrofit2.**&#123; *; &#125;</span><br><span class="line"></span><br><span class="line">-keepattributes Signature</span><br><span class="line">-keepattributes Exceptions</span><br><span class="line"></span><br><span class="line"># Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and</span><br><span class="line"># EnclosingMethod is required to use InnerClasses.</span><br><span class="line">-keepattributes Signature, InnerClasses, EnclosingMethod</span><br><span class="line"></span><br><span class="line"># Retrofit does reflection on method and parameter annotations.</span><br><span class="line">-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations</span><br><span class="line"></span><br><span class="line"># Retain service method parameters when optimizing.</span><br><span class="line">-keepclassmembers,allowshrinking,allowobfuscation interface * &#123;</span><br><span class="line">    @retrofit2.http.* &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Ignore annotation used for build tooling.</span><br><span class="line">-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement</span><br><span class="line"></span><br><span class="line"># Ignore JSR 305 annotations for embedding nullability information.</span><br><span class="line">-dontwarn javax.annotation.**</span><br><span class="line"></span><br><span class="line"># Guarded by a NoClassDefFoundError try/catch and only used when on the classpath.</span><br><span class="line">-dontwarn kotlin.Unit</span><br><span class="line"></span><br><span class="line"># Top-level functions that can only be used by Kotlin.</span><br><span class="line">-dontwarn retrofit2.KotlinExtensions</span><br><span class="line">-dontwarn retrofit2.KotlinExtensions$*</span><br><span class="line"></span><br><span class="line"># With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy</span><br><span class="line"># and replaces all potential values with null. Explicitly keeping the interfaces prevents this.</span><br><span class="line">-if interface * &#123; @retrofit2.http.* &lt;methods&gt;; &#125;</span><br><span class="line">-keep,allowobfuscation interface &lt;1&gt;</span><br><span class="line"></span><br><span class="line">-dontwarn java.lang.invoke.*</span><br><span class="line"></span><br><span class="line">#Rx</span><br><span class="line">-dontwarn sun.misc.**</span><br><span class="line">-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* &#123;</span><br><span class="line">long producerIndex;</span><br><span class="line">long consumerIndex;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef &#123;</span><br><span class="line">rx.internal.util.atomic.LinkedQueueNode producerNode;</span><br><span class="line">&#125;</span><br><span class="line">-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef &#123;</span><br><span class="line">rx.internal.util.atomic.LinkedQueueNode consumerNode;</span><br><span class="line">&#125;</span><br><span class="line">#这个不推荐使用</span><br><span class="line">-dontwarn rx.**</span><br><span class="line">-keep class rx.**&#123;*;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多文章，尽在<a href="https://chinabosh.github.io">个人博客</a><br><a href="https://github.com/chinabosh" target="_blank" rel="noopener">fork me on github</a></p>
+
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "c24aaa41e31ef5fc2981",
+        clientSecret: "46e610d10a241b1fba505fb58d2ab770b9a792a5",
+        repo: "chinabosh.github.io",
+        owner: "chinabosh",
+        admin: ["chinabosh"],
+        id: "2020/01/16/android常用混淆规则",
+        distractionFreeMode: true,
+        title: "android常用混淆规则",
+        body: "https://chinabosh.github.io/2020/01/16/android常用混淆规则/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">
+          本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_pv">
+	本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+            
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script type="text/javascript" src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+        </script>
+    
+
+</body>
+</html>
