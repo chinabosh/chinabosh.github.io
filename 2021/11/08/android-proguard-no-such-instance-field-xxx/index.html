@@ -11,7 +11,7 @@
     <meta name="author" content="bosh">
     <meta name="version" content="1.0.0">
     <meta name="keywords" content>
-    <meta name="description" content="问题  Android开启混淆后碰到空指针,调试后发现原来的一些final变量会报no such instancefield “xxx”的错误,而不开启混淆又不会有问题.这种情况肯定不能单单关闭混淆来解决问题.解决方法  经过一番google,在stackoverflow上找到了解决方法:  在混淆中加入:1-dontobfuscatestackoverflow原文链接  https://stackoverflow.com/questions/28646999/no-such-in...">
+    <meta name="description" content="问题  Android开启混淆后碰到空指针,调试后发现原来的一些final变量会报no such instancefield “xxx”的错误,而不开启混淆又不会有问题.这种情况肯定不能单单关闭混淆来解决问题.解决方法  经过一番google,在stackoverflow上找到了解决方法:  在混淆中加入:1-dontobfuscatestackoverflow原文链接  https://stackoverflow.com/questions/28646999/no-such-...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
@@ -103,6 +103,8 @@
     <section class="article-body markdown-body">
         
         <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>  Android开启混淆后碰到空指针,调试后发现原来的一些final变量会报no such instance<br>field “xxx”的错误,而不开启混淆又不会有问题.这种情况肯定不能单单关闭混淆来解决<br>问题.</p>
+<a id="more"></a>
+
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>  经过一番google,在stackoverflow上找到了解决方法:<br>  在混淆中加入:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-dontobfuscate</span><br></pre></td></tr></table></figure>
 
