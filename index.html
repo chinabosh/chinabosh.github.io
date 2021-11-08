@@ -123,6 +123,56 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2021/11/08/android-proguard-no-such-instance-field-xxx/">android proguard no such instance field &#34;xxx&#34;</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://chinabosh.github.io/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2021-11-08T02:31:28.000Z" itemprop="datePublished">2021-11-08</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/proguard/">proguard</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>  Android开启混淆后碰到空指针,调试后发现原来的一些final变量会报no such instance<br>field “xxx”的错误,而不开启混淆又不会有问题.这种情况肯定不能单单关闭混淆来解决<br>问题.</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>  经过一番google,在stackoverflow上找到了解决方法:<br>  在混淆中加入:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-dontobfuscate</span><br></pre></td></tr></table></figure>
+
+<h3 id="stackoverflow原文链接"><a href="#stackoverflow原文链接" class="headerlink" title="stackoverflow原文链接"></a>stackoverflow原文链接</h3><p>  <a href="https://stackoverflow.com/questions/28646999/no-such-instance-field" target="_blank" rel="noopener">https://stackoverflow.com/questions/28646999/no-such-instance-field</a></p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <section class="article-body markdown-body">
+        
+        <p>mac:<br>command+option+下方向键   find next occurrences<br>control + G       添加上下一个多行编辑<br>control + command + G 全选多行编辑</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2020/01/16/android常用混淆规则/">android常用混淆规则</a>
         </h1>
         
@@ -431,44 +481,11 @@
 </article>
 
 
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2019/07/30/hello-world/">use hexo</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="https://chinabosh.github.io/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-07-29T16:00:00.000Z" itemprop="datePublished">2019-07-30</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        
-        <p class="article-more-link">
-            <a href="/2019/07/30/hello-world/#more">
-                <span class="vm">阅读更多</span>
-                <i class="icon-arrow-double-right vm"></i>    
-            </a>
-        </p>
-        
-        
-    </section>
-</article>
 
 
-
+<nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+</nav>
 
 
 </div>
